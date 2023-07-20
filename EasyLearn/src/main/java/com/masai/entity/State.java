@@ -1,5 +1,5 @@
 package com.masai.entity;
 
 public enum State {
-	DELETED,ACTIVE;
+	DELETED,ACTIVE
 }
