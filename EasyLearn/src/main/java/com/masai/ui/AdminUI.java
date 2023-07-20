@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.masai.entity.Course;
 import com.masai.entity.State;
+import com.masai.exception.NoRecordFoundException;
 import com.masai.exception.SomethingWentWrongException;
 import com.masai.services.*;
 
@@ -30,7 +31,7 @@ public class AdminUI {
 //				assignCoureToStudent(sc);
 				break;
 			case 3 :
-//				deleteCourseById(sc);
+				deleteCourseById(sc);
 				break;
 			case 4 :
 //				deleteStudentById(sc);
@@ -48,12 +49,25 @@ public class AdminUI {
 		
 	}
 
+	private static void deleteCourseById(Scanner sc) {
+		System.out.print("Enter course ID : ");
+		int courseID = sc.nextInt();
+		AdminServices services = new AdminServicesImpl();
+		try {
+			services.deleteCourseById(courseID);
+			System.out.println("course deleted successfully .. !");
+		} catch (SomethingWentWrongException | NoRecordFoundException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
 	private static void addCourse(Scanner sc) {
 		System.out.print("Enter course Name :");
 		String courseName = sc.next();
 		
 		Course course = new Course(courseName);
-		course.setCourseStatus(State.ACTIVE);
+//		course.setCourseStatus(State.ACTIVE);
 		AdminServices services = new AdminServicesImpl();
 		
 		try {
