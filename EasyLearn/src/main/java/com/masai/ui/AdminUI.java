@@ -1,5 +1,6 @@
 package com.masai.ui;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import com.masai.entity.Course;
@@ -28,13 +29,13 @@ public class AdminUI {
 				addCourse(sc);
 				break;
 			case 2 :
-//				assignCoureToStudent(sc);
+				assignCoureToStudent(sc);
 				break;
 			case 3 :
 				deleteCourseById(sc);
 				break;
 			case 4 :
-//				deleteStudentById(sc);
+				deleteStudentById(sc);
 				break;
 			case 5 :
 //				deleteInstructorById(sc);
@@ -46,6 +47,37 @@ public class AdminUI {
 				System.out.println("invalid choice, please try again ");
 			}
 		}while(choice!=0);
+		
+	}
+
+
+	private static void deleteStudentById(Scanner sc) {
+		System.out.print("Enter student ID : ");
+		int studentId = sc.nextInt();
+		AdminServices services = new AdminServicesImpl();
+		try {
+			services.deleteStudentById(studentId);
+			System.out.println("Student deleted successfully .. !");
+		} catch (SomethingWentWrongException | NoRecordFoundException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
+	private static void assignCoureToStudent(Scanner sc) {
+		System.out.println("Enter student id : ");
+		int StudentId = sc.nextInt();
+		System.out.println("Enter course id's (space seperated vaues only) : ");
+		sc.nextLine();
+		int[] courseIDs = Arrays.stream(sc.nextLine().trim().split(" ")).mapToInt(Integer::parseInt).toArray();
+	
+		AdminServices services = new AdminServicesImpl();
+		try {
+			services.assignCoureToStudent(courseIDs, StudentId);
+			System.out.println("courses assinged to student ");
+		} catch (SomethingWentWrongException | NoRecordFoundException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 
