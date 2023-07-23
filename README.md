@@ -43,12 +43,15 @@ easyLearn online learning software solution that empowers remote education and t
 - Java
 - Maven
 - MySQL
+- Hibernate
 
 ## System Requirements
 
 - Java Development Kit (JDK)
 - Maven
 - MySQL Server
+
+  
 ## Usage
 You can perform various tasks such as creating courses, adding assignments, updating quiz status, and more. Refer to the documentation or code comments for detailed instructions on using the system.
 
