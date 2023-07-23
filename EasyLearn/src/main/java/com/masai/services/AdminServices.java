@@ -1,5 +1,7 @@
 package com.masai.services;
 
+import java.util.Map;
+
 import com.masai.entity.Course;
 import com.masai.exception.NoRecordFoundException;
 import com.masai.exception.SomethingWentWrongException;
@@ -10,4 +12,5 @@ public interface AdminServices {
 	void assignCoureToStudent(int[] courseIDs, int studentId)throws SomethingWentWrongException, NoRecordFoundException;
 	void deleteStudentById(int studentId) throws SomethingWentWrongException, NoRecordFoundException;
 	void deleteInstructorById(int instrucorID)throws SomethingWentWrongException, NoRecordFoundException;
+	Map<String, Double> showStats(int courseID)throws SomethingWentWrongException, NoRecordFoundException;
 }

@@ -35,7 +35,7 @@ public class MainUI {
 				RegisterUI.registerStudent(sc);
 				break;
 			case 5 :
-//				LoginUI.studentLogin(sc);
+				LoginUI.studentLogin(sc);
 				break;
 			case 0 : 
 				System.out.println("Thanks for using our services .. !");

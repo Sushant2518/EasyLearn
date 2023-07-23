@@ -1,6 +1,7 @@
 package com.masai.ui;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.masai.entity.Course;
@@ -21,7 +22,7 @@ public class AdminUI {
 			System.out.println("Press 4. Delete student by ID");
 			System.out.println("Press 5. Delete Instructor by ID ");
 			System.out.println("Press 6. Show course stats ");
-			System.out.println("");
+			System.out.println("Press 0. Exit");
 			System.out.print("Enter your choice : ");
 			choice = sc.nextInt();
 			switch(choice) {
@@ -41,12 +42,37 @@ public class AdminUI {
 				deleteInstructorById(sc);
 				break;
 			case 6 :
-//				showCourseStats(sc);
+				showCourseStats(sc);
+				break;
+			case 0 :
+				choice = 0;
 				break;
 			default :
 				System.out.println("invalid choice, please try again ");
 			}
 		}while(choice!=0);
+		
+	}
+
+
+	private static void showCourseStats(Scanner sc) {
+		AdminServices services = new AdminServicesImpl();
+		System.out.println("Enter course ID : ");
+		int courseID = sc.nextInt();
+		try {
+			
+
+			Map<String,Double> stats = services.showStats(courseID);
+			System.out.println("");
+			System.out.println("+---------------------------------------------------------------------------------------+");
+			System.out.println("|"+" Attendence"+"\t"+"|"+ "\t"+ " Assignment submission rate"+"\t"+"|"+ "\t"+" Quiz compleion rate "+"\t"+"|");
+			System.out.println("+---------------------------------------------------------------------------------------+");
+			System.out.println("|"+ " "+stats.get("attendence")+"%"+"\t"+"|"+ "\t"+stats.get("assignMentSubmissionRate")+"%"+"\t"+"\t"+"\t"+"\t"+"|"+ "\t"+stats.get("quizzesSubmissionRate")+"%"+"\t"+"\t"+"\t"+"|");
+			System.out.println("+---------------------------------------------------------------------------------------+");
+			System.out.println();
+		} catch (SomethingWentWrongException | NoRecordFoundException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 
@@ -113,7 +139,7 @@ public class AdminUI {
 		String courseName = sc.next();
 		
 		Course course = new Course(courseName);
-//		course.setCourseStatus(State.ACTIVE);
+		course.setCourseStatus(State.ACTIVE);
 		AdminServices services = new AdminServicesImpl();
 		
 		try {

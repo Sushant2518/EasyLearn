@@ -55,7 +55,7 @@ public class LoginUI {
 		try {
 			if (iLs.LoginStudent(username, password)) {
 				System.out.println("Login succes .. !");
-//				StudentUi.showStudentUi(sc);
+				StudentUI.showStudentUi(sc);
 			} else {
 				System.out.println("incorrect username or password ");
 			}
