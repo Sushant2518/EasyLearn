@@ -9,4 +9,5 @@ public interface AdminServices {
 	void deleteCourseById(int courseID)throws SomethingWentWrongException, NoRecordFoundException;
 	void assignCoureToStudent(int[] courseIDs, int studentId)throws SomethingWentWrongException, NoRecordFoundException;
 	void deleteStudentById(int studentId) throws SomethingWentWrongException, NoRecordFoundException;
+	void deleteInstructorById(int instrucorID)throws SomethingWentWrongException, NoRecordFoundException;
 }

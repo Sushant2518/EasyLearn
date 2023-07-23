@@ -1,6 +1,7 @@
 package com.masai.dao;
 
 import com.masai.entity.Course;
+import com.masai.entity.Instructor;
 import com.masai.entity.State;
 import com.masai.entity.Student;
 import com.masai.exception.NoRecordFoundException;
@@ -123,6 +124,37 @@ public class AdminDAOImpl implements AdminDAO{
 		} finally {
 			em.close();
 		}
+	}
+
+	@Override
+	public void deleteInstructorById(int instrucorID) throws NoRecordFoundException, SomethingWentWrongException {
+		Instructor instructor = findInstructorById(instrucorID);
+		EntityManager em = null;
+		EntityTransaction et = null;
+		try {
+			em = EMUtilis.getEntityManager();
+			et = em.getTransaction();
+			et.begin();
+			instructor = em.merge(instructor);
+			instructor.setAccountStatus(State.DELETED);
+			et.commit();
+		} catch (PersistenceException p) {
+			et.rollback();
+			throw new SomethingWentWrongException("oops can't delete student please try later");
+		} finally {
+			em.close();
+		}
+		
+	}
+
+	@Override
+	public Instructor findInstructorById(int instructorId) throws NoRecordFoundException {
+		EntityManager em = EMUtilis.getEntityManager();
+		Instructor instructor = em.find(Instructor.class, instructorId);
+		if (instructor == null || instructor.getAccountStatus() == State.DELETED) {
+			throw new NoRecordFoundException("can't find any Instructor with id " + instructor);
+		}
+		return instructor;
 	}
 
 	

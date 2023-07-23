@@ -33,4 +33,10 @@ public class AdminServicesImpl implements AdminServices{
 		adminDAO.deleteStudentById(studentId);
 	}
 
+	@Override
+	public void deleteInstructorById(int instrucorID) throws SomethingWentWrongException, NoRecordFoundException {
+		AdminDAO adminDAO = new AdminDAOImpl();
+		adminDAO.deleteInstructorById(instrucorID);
+	}
+
 }

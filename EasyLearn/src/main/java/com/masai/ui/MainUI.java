@@ -1,6 +1,7 @@
 package com.masai.ui;
 
 import java.util.Scanner;
+import com.masai.ui.RegisterUI;
 
 public class MainUI {
 
@@ -25,16 +26,16 @@ public class MainUI {
 				LoginUI.adminLogin(sc);
 				break;
 			case 2 :
-//				RegisterUi.registerInstrucor(sc);
+				RegisterUI.registerInstrucor(sc);
 				break;
 			case 3 :
-//				LoginUi.instructorLogin(sc);
+				LoginUI.instructorLogin(sc);
 				break;
 			case 4 :
-//				RegisterUi.registerStudent(sc);
+				RegisterUI.registerStudent(sc);
 				break;
 			case 5 :
-//				LoginUi.studentLogin(sc);
+//				LoginUI.studentLogin(sc);
 				break;
 			case 0 : 
 				System.out.println("Thanks for using our services .. !");

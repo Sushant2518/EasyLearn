@@ -38,7 +38,7 @@ public class AdminUI {
 				deleteStudentById(sc);
 				break;
 			case 5 :
-//				deleteInstructorById(sc);
+				deleteInstructorById(sc);
 				break;
 			case 6 :
 //				showCourseStats(sc);
@@ -47,6 +47,20 @@ public class AdminUI {
 				System.out.println("invalid choice, please try again ");
 			}
 		}while(choice!=0);
+		
+	}
+
+
+	private static void deleteInstructorById(Scanner sc) {
+		System.out.print("Enter Instructor ID : ");
+		int instrucorID = sc.nextInt();
+		AdminServices services = new AdminServicesImpl();
+		try {
+			services.deleteInstructorById(instrucorID);
+			System.out.println("Instrucor deleted successfully .. !");
+		} catch (SomethingWentWrongException | NoRecordFoundException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 
