@@ -1,5 +1,7 @@
 package com.masai.dao;
 
+import java.util.Map;
+
 import com.masai.entity.Course;
 import com.masai.entity.Instructor;
 import com.masai.entity.Student;
@@ -15,4 +17,5 @@ public interface AdminDAO {
 	void deleteStudentById(int studentId)throws SomethingWentWrongException, NoRecordFoundException;
 	Instructor findInstructorById(int instructorId) throws NoRecordFoundException;
 	void deleteInstructorById(int instrucorID)throws NoRecordFoundException, SomethingWentWrongException;
+	Map<String, Double> showStats(int courseID)throws NoRecordFoundException, SomethingWentWrongException;
 }

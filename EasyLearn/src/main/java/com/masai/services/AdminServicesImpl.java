@@ -1,5 +1,7 @@
 package com.masai.services;
 
+import java.util.Map;
+
 import com.masai.dao.AdminDAO;
 import com.masai.dao.AdminDAOImpl;
 import com.masai.entity.Course;
@@ -37,6 +39,12 @@ public class AdminServicesImpl implements AdminServices{
 	public void deleteInstructorById(int instrucorID) throws SomethingWentWrongException, NoRecordFoundException {
 		AdminDAO adminDAO = new AdminDAOImpl();
 		adminDAO.deleteInstructorById(instrucorID);
+	}
+
+	@Override
+	public Map<String, Double> showStats(int courseID) throws SomethingWentWrongException, NoRecordFoundException {
+		AdminDAO adminDAO = new AdminDAOImpl();
+		return adminDAO.showStats(courseID);
 	}
 
 }

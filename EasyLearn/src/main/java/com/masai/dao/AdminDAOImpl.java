@@ -1,8 +1,18 @@
 package com.masai.dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import com.masai.entity.Assignment;
 import com.masai.entity.Course;
 import com.masai.entity.Instructor;
+import com.masai.entity.Lecture;
+import com.masai.entity.Quiz;
 import com.masai.entity.State;
+import com.masai.entity.Status;
 import com.masai.entity.Student;
 import com.masai.exception.NoRecordFoundException;
 import com.masai.exception.SomethingWentWrongException;
@@ -155,6 +165,31 @@ public class AdminDAOImpl implements AdminDAO{
 			throw new NoRecordFoundException("can't find any Instructor with id " + instructor);
 		}
 		return instructor;
+	}
+
+	@Override
+	public Map<String, Double> showStats(int courseID) throws NoRecordFoundException, SomethingWentWrongException {
+		Course course = findCourseById(courseID);
+		Set<Assignment> assignments = course.getAssignments();
+		Set<Quiz> quizzes = course.getQuizzes();
+		Set<Lecture> lectures = course.getLectures();
+		List<Assignment> CompletedAssignments = assignments.stream().filter(a -> a.getIsCompleted() == Status.COMPLETED)
+				.collect(Collectors.toList());
+		List<Quiz> Completedquizzes = quizzes.stream().filter(a -> a.getIsCompleted() == Status.COMPLETED)
+				.collect(Collectors.toList());
+		List<Lecture> CompletedLectures = lectures.stream().filter(a -> a.getIsWatched() == Status.COMPLETED)
+				.collect(Collectors.toList());
+
+		double assignMentSubmissionRate = Math.round(((CompletedAssignments.size()/assignments.size())*100)*100.00)/100.00;
+		double quizzesSubmissionRate = Math.round(((Completedquizzes.size()/quizzes.size())*100)*100.00)/100.00;
+		double attendence = Math.round(((CompletedLectures.size()/lectures.size())*100)*100.00)/100.00;
+		
+		Map<String, Double> stats = new HashMap<>();
+		stats.put("assignMentSubmissionRate", assignMentSubmissionRate);
+		stats.put("quizzesSubmissionRate", quizzesSubmissionRate);
+		stats.put("attendence", attendence);
+		return stats;
+	
 	}
 
 	
