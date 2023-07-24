@@ -3,7 +3,7 @@
 
  ![Database Schema](./logo/EASY%20LEARN.png)
 
-easyLearn online learning software solution that empowers remote education and training. This platform is specifically designed to equip educators with powerful tools for creating and delivering online courses, while providing students with an intuitive interface to access course materials, engage in assignments, and monitor their progress. With its advanced features like progress tracking, performance analytics, and effective communication tools, easyLearn revolutionizes the teaching and learning experience, facilitating accelerated learning through online platforms.
+easyLearn is an online learning platform that helps teachers create and deliver courses to students remotely. It offers powerful tools for educators and an easy-to-use interface for students to access course materials, complete assignments, and track their progress. The platform also includes features like progress tracking, performance analysis, and communication tools to enhance the teaching and learning experience. Overall, easyLearn makes online education more effective and facilitates faster learning through digital platforms.
 
 ## Roles:
 
